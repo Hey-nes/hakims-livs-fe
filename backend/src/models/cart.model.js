@@ -1,4 +1,4 @@
-const {schema, model } = require("moongoose");
+const mongoose = require("mongoose");
 
 // Schema for cart items
 const cartItemSchema = new mongoose.Schema({

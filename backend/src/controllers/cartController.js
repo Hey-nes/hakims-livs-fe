@@ -1,4 +1,6 @@
 const express = require("express");
+const cartModel = require("../models/cart.model");
+
 
 const getCarts = async (req, res) => {
   res.status(200).send("Welcome onbord, hope u can swim");
@@ -18,11 +20,18 @@ const createNewItem = async (req, res) => {
     });
   }
   try {
+    const cart = new cartModel(req.body);
+    await cart.save();
     res.status(201).json({
-      newItem: {...req.body},
+      message: "New cart created successfully!!",
+      new_cart: cart,
     });
   } catch (error) {
-    console.error(err.message);
+    console.error(error.message);
+    res.status(500).json({
+      message:"Failed to create new cart",
+      error: error.message,
+    })
   }
 };
-module.exports = { getCarts, getOneItem,createNewItem };
+module.exports = { getCarts, getOneItem, createNewItem };
