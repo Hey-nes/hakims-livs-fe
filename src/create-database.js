@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { db } = mongoose.connection;
 
 const createDatabase = async () => {
   const productSchema = mongoose.Schema({
@@ -10,7 +9,7 @@ const createDatabase = async () => {
     price: { type: Number, required: true },
   });
 
-  const productModel = mongoose.model("products", productSchema);
+  const productModel = mongoose.model("products", productSchema, "products");
 
   await productModel.insertMany([
     {
@@ -38,7 +37,9 @@ const createDatabase = async () => {
 };
 
 const run = async () => {
-  await mongoose.connect("mongodb://localhost:27017/hakims-livs-products");
+  await mongoose.connect(
+    "mongodb+srv://gruppkval:Grupp0823@hakims-livs-cluster.npk4gwa.mongodb.net/hakims-livs-db"
+  );
 
   await createDatabase();
   mongoose.connection.close();
