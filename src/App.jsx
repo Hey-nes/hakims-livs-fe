@@ -12,9 +12,12 @@ const App = () => {
   useEffect(() => {
     const fetchProductData = async () => {
       try {
-        const response = await fetch("api-endpoint-here");
+        const response = await fetch(
+          "https://hakims-livs-be.vercel.app/api/intro/product"
+        );
         const productData = await response.json();
         setProducts(productData);
+        console.log(productData);
       } catch (error) {
         console.error("Error fetching products", error);
       }
