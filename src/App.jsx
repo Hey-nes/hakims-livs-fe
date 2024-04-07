@@ -13,7 +13,7 @@ const App = () => {
     const fetchProductData = async () => {
       try {
         const response = await fetch(
-          "https://hakims-livs-be.vercel.app/api/intro/product"
+          "hakims-livs-kx1mr8uh4-hey-nes-projects.vercel.app/api/intro/product"
         );
         const productData = await response.json();
         setProducts(productData);
