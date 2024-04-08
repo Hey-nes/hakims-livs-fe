@@ -6,7 +6,8 @@ const ProductCard = ({ product }) => {
         <img src={product.imagePath} alt={product.title} />
       </div>
       <div className="product-bottom">
-        <p>{product.price}</p>
+        <p>Pris: {product.price} kr</p>
+        <p>{product.description}</p>
         <button>Köp</button>
       </div>
     </div>
