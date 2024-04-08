@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
-const cartRouter = require("./src/routes/cart.route");
+const productRouter = require("./src/routes/product.routes");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/api/intro/cart", cartRouter )
+app.use("/api/intro/product", productRouter )
 module.exports = app;
