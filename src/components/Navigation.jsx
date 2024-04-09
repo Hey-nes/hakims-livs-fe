@@ -1,23 +1,15 @@
-const Navigation = () => {
+import CategoryListItem from "./CategoryListItem";
+
+const Navigation = ({ categories }) => {
+  console.log("Categories:", categories);
   return (
-    <div>
-      <aside className="aside">
-        <h3>Kategorier</h3>
-        <nav className="nav">
-          <ul>
-            <li>
-              <a href="">Kategori 1</a>
-            </li>
-            <li>
-              <a href="">Kategori 2</a>
-            </li>
-            <li>
-              <a href="">Kategori 3</a>
-            </li>
-          </ul>
-        </nav>
-      </aside>
-    </div>
+    <>
+      <ul>
+        {categories.map((category) => (
+          <CategoryListItem key={category._id} categories={category} />
+        ))}
+      </ul>
+    </>
   );
 };
 

@@ -8,6 +8,7 @@ import Footer from "./components/Footer.jsx";
 
 const App = () => {
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const fetchProductData = async () => {
@@ -26,11 +27,30 @@ const App = () => {
     fetchProductData();
   }, []);
 
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch("API-Endpoint-Here");
+        const fetchedCategories = await response.json();
+        setCategories(fetchedCategories);
+        console.log(fetchedCategories);
+      } catch (error) {
+        console.error("Error fetching categories", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
   return (
     <div className="app">
       <Header />
       <Hero />
-      <Navigation />
+      <aside className="aside">
+        <nav>
+          <Navigation categories={categories} />
+        </nav>
+      </aside>
       <main className="main">
         <div className="product-wrapper">
           {products.map((product) => (
