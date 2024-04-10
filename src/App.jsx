@@ -30,7 +30,9 @@ const App = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch("API-Endpoint-Here");
+        const response = await fetch(
+          "https://hakims-livs-be.vercel.app/api/intro/category"
+        );
         const fetchedCategories = await response.json();
         setCategories(fetchedCategories);
         console.log(fetchedCategories);
