@@ -1,0 +1,8 @@
+.admin-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.small-product-img {
+  max-height: 2rem;
+}
