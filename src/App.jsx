@@ -5,10 +5,13 @@ import Hero from "./components/Hero.jsx";
 import Navigation from "./components/Navigation.jsx";
 import ProductCard from "./components/ProductCard.jsx";
 import Footer from "./components/Footer.jsx";
+import AdminPanel from "./components/AdminPanel/AdminPanel.jsx";
+import "./components/AdminPanel/AdminPanel.css";
 
 const App = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(true);
 
   useEffect(() => {
     const fetchProductData = async () => {
@@ -46,6 +49,9 @@ const App = () => {
 
   return (
     <div className="app">
+      {isAdminLoggedIn ? (
+        <AdminPanel products={products} categories={categories} />
+      ) : null}
       <Header />
       <Hero />
       <aside className="aside">
@@ -56,7 +62,11 @@ const App = () => {
       <main className="main">
         <div className="product-wrapper">
           {products.map((product) => (
-            <ProductCard key={product._id} product={product} />
+            <ProductCard
+              key={product._id}
+              products={products}
+              categories={categories}
+            />
           ))}
         </div>
       </main>

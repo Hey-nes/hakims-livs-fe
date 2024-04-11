@@ -1,0 +1,15 @@
+.admin-panel {
+  max-width: 50%;
+  margin: 0 auto;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.small-product-img {
+  max-height: 2rem;
+}
