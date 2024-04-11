@@ -7,7 +7,7 @@ const AdminPanel = ({ products, categories }) => {
       <h1>Admin Panel</h1>
       <h2>Lista med produkter:</h2>
       {products.map((product) => (
-        <div key={product.id}>
+        <div className="product-card" key={product.id}>
           <p>{product.title}</p>
           <img
             className="small-product-img"
@@ -38,9 +38,7 @@ const AdminPanel = ({ products, categories }) => {
           />
           <select name="category">
             {categories.map((category) => (
-              <div>
-                <option value={category.name}>{category.name}</option>
-              </div>
+              <option key={category._id} value={category.name}>{category.name}</option>
             ))}
           </select>
           <button>Submit</button>

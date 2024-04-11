@@ -62,7 +62,11 @@ const App = () => {
       <main className="main">
         <div className="product-wrapper">
           {products.map((product) => (
-            <ProductCard key={product._id} product={product} />
+            <ProductCard
+              key={product._id}
+              products={products}
+              categories={categories}
+            />
           ))}
         </div>
       </main>
