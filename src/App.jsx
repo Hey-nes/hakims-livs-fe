@@ -9,6 +9,7 @@ import Footer from "./components/Footer.jsx";
 import AdminPanel from "./components/AdminPanel/AdminPanel.jsx";
 import "./components/AdminPanel/AdminPanel.css";
 import Checkout from "./components/Checkout/Checkout.jsx";
+import Cart from "./components/Cart/Cart.jsx";
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -63,6 +64,7 @@ const App = () => {
           }
         />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,4 +1,10 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom'
+
+
 const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <div>
       <header className="header">
@@ -6,7 +12,9 @@ const Header = () => {
         <input type="text" placeholder="Sök..." />
         <i className="cart-icon"></i>
         <button>Logga in</button>
-        <button className="checkout">Till kassan</button>
+        <button className="checkout" onClick={() => {
+          navigate("./Cart")
+        }}>Till kassan</button>
       </header>
     </div>
   );
