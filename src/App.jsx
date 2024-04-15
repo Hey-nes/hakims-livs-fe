@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header.jsx";
 import Hero from "./components/Hero.jsx";
@@ -7,11 +8,12 @@ import ProductCard from "./components/ProductCard.jsx";
 import Footer from "./components/Footer.jsx";
 import AdminPanel from "./components/AdminPanel/AdminPanel.jsx";
 import "./components/AdminPanel/AdminPanel.css";
+import Checkout from "./components/Checkout/Checkout.jsx";
 
 const App = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(true);
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
 
   useEffect(() => {
     const fetchProductData = async () => {
@@ -48,10 +50,29 @@ const App = () => {
   }, []);
 
   return (
-    <div className="app">
-      {isAdminLoggedIn ? (
-        <AdminPanel products={products} categories={categories} />
-      ) : null}
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <HomePage
+              isAdminLoggedIn={isAdminLoggedIn}
+              products={products}
+              categories={categories}
+            />
+          }
+        />
+        <Route path="/checkout" element={<Checkout />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
+
+const HomePage = ({ isAdminLoggedIn, products, categories }) => {
+  return isAdminLoggedIn ? (
+    <AdminPanel products={products} categories={categories} />
+  ) : (
+    <>
       <Header />
       <Hero />
       <aside className="aside">
@@ -71,7 +92,7 @@ const App = () => {
         </div>
       </main>
       <Footer />
-    </div>
+    </>
   );
 };
 
