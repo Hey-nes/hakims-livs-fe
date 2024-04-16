@@ -1,0 +1,25 @@
+.product-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+}
+
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.product-item {
+  width: 33.33%;
+  margin-bottom: 1rem;
+}
+
+.product-picture img {
+  width: 100%;
+  height: auto;
+}
+
+.product-bottom {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
