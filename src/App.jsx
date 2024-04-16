@@ -64,7 +64,7 @@ const App = () => {
           }
         />
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/cart" element={<Cart products={products} />} />
       </Routes>
     </BrowserRouter>
   );

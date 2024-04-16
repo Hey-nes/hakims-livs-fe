@@ -1,18 +1,33 @@
 import React from "react";
 
-function CartProducts() {
+function CartProducts({products}) {
+    const sum = products.reduce((total, item) => total + item.price, 0);
+
     return(
         <div className="cart-products">
             <div className="cart-products-wrapper">
                 <div className="products-top">
                     <h2>Produkter</h2>
-                    <p>123,456 kr</p>
+                    <p>{sum} kr</p>
                 </div>
                 <div>
                     <span>Har du ett konto <a href="">Logga in</a></span>
                 </div>
             </div>
-            <div></div>
+            <div className="products-bottom">
+                <hr />
+                {products.map((product, index) => (
+                    <div className="product-cart-small" key={index}>
+                        <img className="cart-img" src={product.imagePath} alt={product.title}/>
+                        <div>
+                            <span>{product.title}</span>
+                            <span>{product.price} kr</span>
+                        </div>
+                    </div>
+                ))}
+                    <hr />
+                <button>Fortsätt till checkout</button>
+            </div>
         </div>
     )
 }

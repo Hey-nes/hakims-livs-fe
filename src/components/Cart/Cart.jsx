@@ -1,16 +1,18 @@
 import CartHeader from "./CartHeader"
 import CartProducts from "./CartProducts"
 import CartPrice from "./CartPrice"
+import Footer from "../Footer";
 import "../../App.css";
 
-function Cart() {
+function Cart({products}) {
     return(
-        <body>
+        <body >
             <CartHeader />
             <main className="cart">
-                <CartProducts />
-                <CartPrice />
+                <CartProducts products={products}/>
+                <CartPrice cartItems={products}/>
             </main>
+            <Footer />
         </body>
     );
 }
