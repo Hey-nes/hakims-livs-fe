@@ -14,7 +14,14 @@ import Cart from "./components/Cart/Cart.jsx";
 const App = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
+
+  const addToCart = (product) => {
+    setCartItems((prevCartItems) => [...prevCartItems, product]);
+    console.log("Adding to cart:", product);
+  };
+  
 
   useEffect(() => {
     const fetchProductData = async () => {
@@ -60,17 +67,18 @@ const App = () => {
               isAdminLoggedIn={isAdminLoggedIn}
               products={products}
               categories={categories}
+              addToCart={addToCart} 
             />
           }
         />
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/cart" element={<Cart products={products} />} />
+        <Route path="/cart" element={<Cart cartItems={cartItems} />} />
       </Routes>
     </BrowserRouter>
   );
 };
 
-const HomePage = ({ isAdminLoggedIn, products, categories }) => {
+const HomePage = ({ isAdminLoggedIn, products, categories, addToCart }) => {
   return isAdminLoggedIn ? (
     <AdminPanel products={products} categories={categories} />
   ) : (
@@ -87,8 +95,9 @@ const HomePage = ({ isAdminLoggedIn, products, categories }) => {
           {products.map((product) => (
             <ProductCard
               key={product._id}
-              products={products}
+              product={product}
               categories={categories}
+              addToCart={addToCart}
             />
           ))}
         </div>

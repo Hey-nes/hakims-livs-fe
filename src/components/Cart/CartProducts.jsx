@@ -1,7 +1,12 @@
 import React from "react";
 
-function CartProducts({products}) {
-    const sum = products.reduce((total, item) => total + item.price, 0);
+function CartProducts({cartItems}) {
+    if (!cartItems || cartItems.length === 0) {
+        return <div>No products available</div>;
+      }
+    
+    
+    const sum = cartItems.reduce((total, item) => total + item.price, 0);
 
     return(
         <div className="cart-products">
@@ -16,7 +21,7 @@ function CartProducts({products}) {
             </div>
             <div className="products-bottom">
                 <hr />
-                {products.map((product, index) => (
+                {cartItems.map((product, index) => (
                     <div className="product-cart-small" key={index}>
                         <img className="cart-img" src={product.imagePath} alt={product.title}/>
                         <div>

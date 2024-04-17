@@ -1,11 +1,16 @@
 import React from "react";
 
 function CartPrice({ cartItems }) {
+
+    if (!cartItems || cartItems.length === 0) {
+        return <div>No items in the cart</div>;
+    }
+
     const sum = cartItems.reduce((total, item) => total + item.price, 0);
     let shipping = sum >= 750 ? 0 : 59;
     const totSum = sum + shipping;
 
-    const tax = totSum * 0.12;
+    const tax = sum * 0.12;
     const roundedTax = tax.toFixed(1);
 
     const saved = totSum * 1.5;
