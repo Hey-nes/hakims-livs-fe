@@ -1,4 +1,4 @@
-import CategoryListItem from "./CategoryListItem";
+import { Link } from "react-router-dom";
 
 const Navigation = ({ categories }) => {
   return (
@@ -6,7 +6,9 @@ const Navigation = ({ categories }) => {
       <h1>Kategorier:</h1>
       <ul>
         {categories.map((category) => (
-          <CategoryListItem key={category._id} categories={category} />
+          <li key={category._id}>
+            <Link to={`/category/${category._id}`}>{category.name}</Link>
+          </li>
         ))}
       </ul>
     </div>

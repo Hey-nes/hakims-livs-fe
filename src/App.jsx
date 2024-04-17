@@ -3,14 +3,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header.jsx";
 import Hero from "./components/Hero/Hero.jsx";
-import Navigation from "./components/Navigation.jsx";
+import Navigation from "./components/Navigation/Navigation.jsx";
 import ProductCard from "./components/ProductCard/ProductCard.jsx";
 import "./components/ProductCard/ProductCard.css";
 import Footer from "./components/Footer.jsx";
 import AdminPanel from "./components/AdminPanel/AdminPanel.jsx";
 import "./components/AdminPanel/AdminPanel.css";
 import Checkout from "./components/Checkout/Checkout.jsx";
-import "./components/Checkout/Checkout.css"
+import "./components/Checkout/Checkout.css";
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -64,6 +64,13 @@ const App = () => {
             />
           }
         />
+        {categories.map((category) => (
+          <Route
+            key={category._id}
+            path={`/category/${category._id}`}
+            element={<CategoryPage categoryId={category._id} />}
+          />
+        ))}
         <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </BrowserRouter>
