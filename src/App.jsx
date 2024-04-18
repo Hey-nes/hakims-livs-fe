@@ -12,6 +12,7 @@ import "./components/AdminPanel/AdminPanel.css";
 import Checkout from "./components/Checkout/Checkout.jsx";
 import Cart from "./components/Cart/Cart.jsx";
 import "./components/Checkout/Checkout.css";
+import CategoryPage from "./components/CategoryPage/CategoryPage.jsx"
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -109,6 +110,7 @@ const HomePage = ({ isAdminLoggedIn, products, categories, addToCart }) => {
                 key={product._id}
                 product={product}
                 categories={categories}
+                addToCart={addToCart}
               />
             ))}
           </div>
