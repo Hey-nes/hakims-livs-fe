@@ -1,9 +1,8 @@
 const Footer = () => {
   return (
-    <div>
+    <>
       <footer className="footer">
-        <h5>Det här är footern</h5>
-        <ul>
+        <ul className="menu">
           <li>
             <a href="">Länk 1</a>
           </li>
@@ -15,7 +14,7 @@ const Footer = () => {
           </li>
         </ul>
       </footer>
-    </div>
+    </>
   );
 };
 

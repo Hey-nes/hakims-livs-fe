@@ -1,0 +1,55 @@
+.checkout-container {
+  max-width: 75%;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.checkout-header {
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+
+.checkout-header h2,
+.checkout-header h3 {
+  margin-right: 1rem;
+}
+
+.checkout-header button {
+  margin-left: auto;
+}
+
+.checkout-table th,
+.checkout-table td {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+}
+
+.form-header h4 {
+  margin-bottom: 0.5rem;
+}
+
+form input {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+}
+
+form button {
+  padding: 0.8rem 1.6rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.sum-total {
+  background-color: #f5f5f5;
+  padding: 1.6rem;
+  margin-left: 1.6rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+}

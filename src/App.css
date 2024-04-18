@@ -1,35 +1,34 @@
 * {
   box-sizing: border-box;
+}
+
+body {
   margin: 0;
   padding: 0;
+  font-family: sans-serif;
 }
 
-li {
-  list-style-type: none;
+/* Utilities */
+.hidden-mobile {
+  display: none;
 }
 
-a {
-  text-decoration: none;
-}
-
+/* Mobile first */
 .app {
   height: 100dvh;
   display: flex;
   flex-direction: column;
-  text-align: center;
 }
 
-.aside,
-.header input,
-.checkout {
-  display: none;
+.navigation {
+  padding: 1rem;
+  border-right: 2px solid black;
 }
 
-.header {
+.navigation header {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  border: 1px solid black;
 }
 
 .cart {
@@ -125,68 +124,76 @@ a {
   max-width: 100dvw;
 }
 
-.main-wrapper {
+.wrapper {
   height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
 }
 
-.aside {
-  border: 1px solid black;
+.wrapper header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-bottom: 2px solid black;
 }
 
 .main {
+  padding: 1rem;
   flex-grow: 1;
-}
-
-.product-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 25%;
-  border: 1px solid black;
-}
-
-.product-picture {
-  display: flex;
-  flex-direction: column;
-  position: relative;
+  overflow-y: auto;
 }
 
 .footer {
-  border: 1px solid black;
-}
-
-.footer,
-.footer ul {
+  border-top: 2px solid black;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+  padding: 1rem;
 }
 
-@media (min-width: 768px) {
-  .hero img {
-    height: 50dvh;
+.footer .menu {
+  display: flex;
+  list-style-type: none;
+}
+
+/* General menu styling */
+.menu {
+  margin: 0;
+  padding: 0;
+}
+
+.menu a,
+.menu a:visited {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  text-decoration: none;
+}
+
+.menu a:hover {
+  text-decoration: underline;
+}
+
+/* Desktop */
+@media (min-width: 1280px) {
+  .hidden-mobile {
+    display: block;
   }
 
-  .aside {
-    width: 10dvw;
+  .app {
+    flex-direction: row;
+  }
+
+  .navigation {
+    border-right: 2px solid black;
+    width: 20rem;
+  }
+
+  .navigation .menu {
     display: flex;
     flex-direction: column;
-  }
-
-  .nav,
-  .header input,
-  .checkout {
-    display: flex;
-  }
-
-  .footer,
-  .footer ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
+    list-style-type: none;
   }
 }
