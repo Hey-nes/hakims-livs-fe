@@ -12,19 +12,13 @@ import "./components/AdminPanel/AdminPanel.css";
 import Checkout from "./components/Checkout/Checkout.jsx";
 import Cart from "./components/Cart/Cart.jsx";
 import "./components/Checkout/Checkout.css";
-import CategoryPage from "./components/CategoryPage/CategoryPage.jsx"
+import CategoryPage from "./components/CategoryPage/CategoryPage.jsx";
 
 const App = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
-
-  const addToCart = (product) => {
-    setCartItems((prevCartItems) => [...prevCartItems, product]);
-    console.log("Adding to cart:", product);
-  };
-  
 
   useEffect(() => {
     const fetchProductData = async () => {
@@ -60,6 +54,22 @@ const App = () => {
     fetchCategories();
   }, []);
 
+  useEffect(() => {
+    const storedCartItems = localStorage.getItem("cartItems");
+    if (storedCartItems) {
+      setCartItems(JSON.parse(storedCartItems));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
+
+  const addToCart = (product) => {
+    setCartItems((prevCartItems) => [...prevCartItems, product]);
+    console.log("Adding to cart:", product);
+  };
+
   return (
     <BrowserRouter>
       <Routes>
@@ -70,7 +80,7 @@ const App = () => {
               isAdminLoggedIn={isAdminLoggedIn}
               products={products}
               categories={categories}
-              addToCart={addToCart} 
+              addToCart={addToCart}
             />
           }
         />
