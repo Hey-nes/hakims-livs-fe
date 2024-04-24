@@ -67,7 +67,10 @@ const App = () => {
 
   const addToCart = (product) => {
     setCartItems((prevCartItems) => [...prevCartItems, product]);
-    console.log("Adding to cart:", product);
+  };
+
+  const removeFromCart = (productId) => {
+    setCartItems((prevCartItems) => prevCartItems.filter(item => item._id !== productId));
   };
 
   return (
@@ -92,7 +95,7 @@ const App = () => {
           />
         ))}
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/cart" element={<Cart cartItems={cartItems} />} />
+        <Route path="/cart" element={<Cart cartItems={cartItems} removeFromCart={removeFromCart}/>} />
       </Routes>
     </BrowserRouter>
   );
