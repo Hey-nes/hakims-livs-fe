@@ -5,12 +5,12 @@ import CartPrice from "./CartPrice";
 import Footer from "../Footer";
 import "../../App.css";
 
-function Cart({ cartItems }) {
+function Cart({ cartItems, removeFromCart }) {
   return (
     <body>
       <CartHeader />
       <main className="cart">
-        <CartProducts cartItems={cartItems} />
+        <CartProducts cartItems={cartItems} removeFromCart={removeFromCart} />
         <CartPrice cartItems={cartItems} />
       </main>
       <Footer />

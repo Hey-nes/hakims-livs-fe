@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ProductCard from "./components/ProductCard/ProductCard.jsx";
+import ProductCard from "../ProductCard/ProductCard.jsx";
 
 const CategoryPage = ({ categoryId }) => {
   const [categoryProducts, setCategoryProducts] = useState([]);

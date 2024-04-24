@@ -1,6 +1,11 @@
 import React from "react";
 
-const ProductCard = ({ product, categories }) => {
+const ProductCard = ({ product, categories, addToCart }) => {
+  const handleAddToCart = () => {
+    addToCart(product);
+    console.log("Button Clicked!");
+  };
+
   return (
     <div className="product-item">
       <h4>{product.title}</h4>
@@ -14,7 +19,7 @@ const ProductCard = ({ product, categories }) => {
         </p>
         <p>Om produkten: {product.description}</p>
         <p>Pris: {product.price} kr</p>
-        <button>Köp</button>
+        <button onClick={handleAddToCart}>Köp</button>
       </div>
     </div>
   );

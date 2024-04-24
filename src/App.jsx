@@ -12,18 +12,13 @@ import "./components/AdminPanel/AdminPanel.css";
 import Checkout from "./components/Checkout/Checkout.jsx";
 import Cart from "./components/Cart/Cart.jsx";
 import "./components/Checkout/Checkout.css";
+import CategoryPage from "./components/CategoryPage/CategoryPage.jsx";
 
 const App = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
-
-  const addToCart = (product) => {
-    setCartItems((prevCartItems) => [...prevCartItems, product]);
-    console.log("Adding to cart:", product);
-  };
-  
 
   useEffect(() => {
     const fetchProductData = async () => {
@@ -59,6 +54,25 @@ const App = () => {
     fetchCategories();
   }, []);
 
+  useEffect(() => {
+    const storedCartItems = localStorage.getItem("cartItems");
+    if (storedCartItems) {
+      setCartItems(JSON.parse(storedCartItems));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
+
+  const addToCart = (product) => {
+    setCartItems((prevCartItems) => [...prevCartItems, product]);
+  };
+
+  const removeFromCart = (productId) => {
+    setCartItems((prevCartItems) => prevCartItems.filter(item => item._id !== productId));
+  };
+
   return (
     <BrowserRouter>
       <Routes>
@@ -69,7 +83,7 @@ const App = () => {
               isAdminLoggedIn={isAdminLoggedIn}
               products={products}
               categories={categories}
-              addToCart={addToCart} 
+              addToCart={addToCart}
             />
           }
         />
@@ -81,7 +95,7 @@ const App = () => {
           />
         ))}
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/cart" element={<Cart cartItems={cartItems} />} />
+        <Route path="/cart" element={<Cart cartItems={cartItems} removeFromCart={removeFromCart}/>} />
       </Routes>
     </BrowserRouter>
   );
@@ -109,6 +123,7 @@ const HomePage = ({ isAdminLoggedIn, products, categories, addToCart }) => {
                 key={product._id}
                 product={product}
                 categories={categories}
+                addToCart={addToCart}
               />
             ))}
           </div>
