@@ -9,7 +9,6 @@ const CartProducts = ({ cartItems, removeFromCart }) => {
   const sum = cartItems.reduce((total, item) => total + item.price, 0);
 
   const handleRemoveFromCart = (productId) => {
-    // Call removeFromCart function passed from the parent component (Cart)
     removeFromCart(productId);
   };
 
@@ -34,7 +33,7 @@ const CartProducts = ({ cartItems, removeFromCart }) => {
             <div>
               <span>{product.title}</span>
               <span>{product.price} kr</span>
-              <button onClick={() => handleRemoveFromCart(product._id)}>Remove</button>
+              <button onClick={() => handleRemoveFromCart(product._id)}>Ta bort</button>
             </div>
           </div>
         ))}
