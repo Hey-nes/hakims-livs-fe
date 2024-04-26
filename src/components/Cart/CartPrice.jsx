@@ -3,7 +3,7 @@ import React from "react";
 function CartPrice({ cartItems }) {
 
     if (!cartItems || cartItems.length === 0) {
-        return <div>No items in the cart</div>;
+        return <div>Inga produkter</div>;
     }
 
     const sum = cartItems.reduce((total, item) => total + item.price, 0);
