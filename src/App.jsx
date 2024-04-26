@@ -70,7 +70,9 @@ const App = () => {
   };
 
   const removeFromCart = (productId) => {
-    setCartItems((prevCartItems) => prevCartItems.filter(item => item._id !== productId));
+    setCartItems((prevCartItems) =>
+      prevCartItems.filter((item) => item._id !== productId)
+    );
   };
 
   return (
@@ -91,11 +93,18 @@ const App = () => {
           <Route
             key={category._id}
             path={`/category/${category._id}`}
-            element={<CategoryPage categoryId={category._id} />}
+            element={
+              <CategoryPage categoryId={category._id} categories={categories} />
+            }
           />
         ))}
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/cart" element={<Cart cartItems={cartItems} removeFromCart={removeFromCart}/>} />
+        <Route
+          path="/cart"
+          element={
+            <Cart cartItems={cartItems} removeFromCart={removeFromCart} />
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
