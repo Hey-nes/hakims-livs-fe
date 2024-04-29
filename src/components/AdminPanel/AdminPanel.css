@@ -13,3 +13,11 @@
 .small-product-img {
   max-height: 2rem;
 }
+
+.order-wrapper,
+.product,
+.customer {
+  border: 2px solid black;
+  margin: 0.5rem;
+  padding: 0.5rem;
+}

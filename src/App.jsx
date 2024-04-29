@@ -17,6 +17,7 @@ import CategoryPage from "./components/CategoryPage/CategoryPage.jsx";
 const App = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [orders, setOrders] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
 
@@ -55,6 +56,22 @@ const App = () => {
   }, []);
 
   useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const response = await fetch(
+          "https://hakims-livs-be.vercel.app/orders"
+        );
+        const fetchedOrders = await response.json();
+        setOrders(fetchedOrders);
+      } catch (error) {
+        console.error("Error fetching orders", error);
+      }
+    };
+
+    fetchOrders();
+  }, []);
+
+  useEffect(() => {
     const storedCartItems = localStorage.getItem("cartItems");
     if (storedCartItems) {
       setCartItems(JSON.parse(storedCartItems));
@@ -83,8 +100,10 @@ const App = () => {
           element={
             <HomePage
               isAdminLoggedIn={isAdminLoggedIn}
+              setIsAdminLoggedIn={setIsAdminLoggedIn}
               products={products}
               categories={categories}
+              orders={orders}
               addToCart={addToCart}
             />
           }
@@ -110,9 +129,21 @@ const App = () => {
   );
 };
 
-const HomePage = ({ isAdminLoggedIn, products, categories, addToCart }) => {
+const HomePage = ({
+  isAdminLoggedIn,
+  setIsAdminLoggedIn,
+  products,
+  categories,
+  orders,
+  addToCart,
+}) => {
   return isAdminLoggedIn ? (
-    <AdminPanel products={products} categories={categories} />
+    <AdminPanel
+      setIsAdminLoggedIn={setIsAdminLoggedIn}
+      products={products}
+      categories={categories}
+      orders={orders}
+    />
   ) : (
     <div className="app">
       <div className="navigation hidden-mobile">
@@ -123,7 +154,10 @@ const HomePage = ({ isAdminLoggedIn, products, categories, addToCart }) => {
         </aside>
       </div>
       <div className="wrapper">
-        <Header />
+        <Header
+          isAdminLoggedIn={isAdminLoggedIn}
+          setIsAdminLoggedIn={setIsAdminLoggedIn}
+        />
         <main className="main">
           <Hero />
           <div className="product-wrapper">
