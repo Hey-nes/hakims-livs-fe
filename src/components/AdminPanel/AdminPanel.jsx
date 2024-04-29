@@ -65,13 +65,16 @@ const AdminPanel = ({ setIsAdminLoggedIn, products, categories, orders }) => {
                 <p>Totalbelopp: {product.totalProductPrice} kr</p>
               </div>
             ))}
-            <h5>Kunder: </h5>
             <div className="customer">
+              <h5>Kund: </h5>
               <p>Förnamn: {order.customerInfo.firstName}</p>
               <p>Efternamn: {order.customerInfo.lastName}</p>
               <p>E-mail: {order.customerInfo.email}</p>
               <h5>Adress: </h5>
-              <p>Gata: {order.customerInfo.address.street} {order.customerInfo.address.streetNumber}</p>
+              <p>
+                Gata: {order.customerInfo.address.street}{" "}
+                {order.customerInfo.address.streetNumber}
+              </p>
               <p>Postnummer: {order.customerInfo.address.postNumber}</p>
               <p>Stad: {order.customerInfo.address.city}</p>
             </div>
